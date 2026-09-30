@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Book Service - Vehicle Service Management System</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        .navbar {
+            background: #198754;
+            color: white;
+            padding: 16px 30px;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 40px auto;
+        }
+
+        .form-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .buttons {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 11px 20px;
+            background: #198754;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back {
+            padding: 11px 20px;
+            background: #6c757d;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .empty {
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>Vehicle Service Management System</h2>
+
+</div>
+
+
+<div class="container">
+
+    <div class="form-card">
+
+        <h2>Book Vehicle Service</h2>
+
+
+        <div th:if="${#lists.isEmpty(vehicles)}"
+             class="empty">
+
+            You do not have any vehicles.
+            Please add a vehicle first.
+
+        </div>
+
+
+        <form th:if="${!#lists.isEmpty(vehicles)}"
+              action="/customer/book"
+              method="post">
+
+
+            <label>Select Vehicle</label>
+
+            <select name="vehicleId" required>
+
+                <option value="">
+                    Select your vehicle
+                </option>
+
+                <option th:each="vehicle : ${vehicles}"
+                        th:value="${vehicle.id}"
+                        th:text="${vehicle.vehicleNumber + ' - ' + vehicle.vehicleModel}">
+                </option>
+
+            </select>
+
+
+            <label>Service Type</label>
+
+            <select name="serviceType" required>
+
+                <option value="">
+                    Select Service
+                </option>
+
+                <option value="General Service">
+                    General Service
+                </option>
+
+                <option value="Oil Change">
+                    Oil Change
+                </option>
+
+                <option value="Brake Service">
+                    Brake Service
+                </option>
+
+                <option value="Engine Repair">
+                    Engine Repair
+                </option>
+
+                <option value="AC Service">
+                    AC Service
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+
+            <label>Appointment Date</label>
+
+            <input type="date"
+                   name="appointmentDate"
+                   required>
+
+
+            <div class="buttons">
+
+                <button type="submit">
+                    Book Service
+                </button>
+
+                <a href="/customer/dashboard"
+                   class="back">
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

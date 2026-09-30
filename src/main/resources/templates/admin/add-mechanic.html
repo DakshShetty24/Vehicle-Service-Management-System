@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Add Mechanic - Vehicle Service Management System</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        .navbar {
+            background: #212529;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .container {
+            width: 450px;
+            margin: 50px auto;
+        }
+
+        .form-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 11px;
+            margin-top: 25px;
+            border: none;
+            border-radius: 5px;
+            background: #198754;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #157347;
+        }
+
+        .cancel {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #555;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>Vehicle Service Management System</h2>
+
+    <div>
+
+        <a href="/admin/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="container">
+
+    <div class="form-card">
+
+        <h2>Add Mechanic</h2>
+
+        <form
+            action="/admin/mechanics/save"
+            method="post">
+
+            <label>Mechanic Name</label>
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Enter mechanic name"
+                required>
+
+
+            <label>Phone Number</label>
+
+            <input
+                type="text"
+                name="phone"
+                placeholder="Enter phone number"
+                required>
+
+
+            <label>Specialization</label>
+
+            <input
+                type="text"
+                name="specialization"
+                placeholder="Example: Engine, Brakes, AC"
+                required>
+
+
+            <button type="submit">
+                Add Mechanic
+            </button>
+
+        </form>
+
+
+        <a
+            href="/admin/dashboard"
+            class="cancel">
+
+            Cancel
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

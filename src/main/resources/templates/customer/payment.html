@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Payment - Vehicle Service Management System</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        .navbar {
+            background: #212529;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            background: #dc3545;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .container {
+            width: 450px;
+            margin: 60px auto;
+        }
+
+        .payment-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .details {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .details p {
+            margin: 10px 0;
+        }
+
+        .amount {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .pay-button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background: #198754;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .pay-button:hover {
+            background: #157347;
+        }
+
+        .cancel {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #555;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<div class="navbar">
+
+    <h2>Vehicle Service Management System</h2>
+
+    <a href="/logout">
+        Logout
+    </a>
+
+</div>
+
+
+<div class="container">
+
+    <div class="payment-card">
+
+        <h2>Service Payment</h2>
+
+
+        <div class="details">
+
+            <p>
+                <strong>Bill ID:</strong>
+                <span th:text="${bill.id}">1</span>
+            </p>
+
+            <p>
+                <strong>Vehicle:</strong>
+                <span th:text="${bill.booking.vehicle.vehicleNumber}">
+                    MH-05-AB-1234
+                </span>
+            </p>
+
+            <p>
+                <strong>Service:</strong>
+                <span th:text="${bill.booking.serviceType}">
+                    General Service
+                </span>
+            </p>
+
+        </div>
+
+
+        <div class="amount">
+
+            ₹<span th:text="${bill.totalAmount}">
+                2400
+            </span>
+
+        </div>
+
+
+        <form
+            action="/customer/pay"
+            method="post">
+
+            <input
+                type="hidden"
+                name="billId"
+                th:value="${bill.id}">
+
+
+            <button
+                type="submit"
+                class="pay-button">
+
+                Pay Now
+
+            </button>
+
+        </form>
+
+
+        <a
+            href="/customer/dashboard"
+            class="cancel">
+
+            Cancel
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

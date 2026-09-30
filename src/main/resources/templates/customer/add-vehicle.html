@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Add Vehicle - Vehicle Service Management System</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        .navbar {
+            background: #198754;
+            color: white;
+            padding: 16px 30px;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 40px auto;
+        }
+
+        .form-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .buttons {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 11px 20px;
+            background: #198754;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back {
+            padding: 11px 20px;
+            background: #6c757d;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>Vehicle Service Management System</h2>
+
+</div>
+
+
+<div class="container">
+
+    <div class="form-card">
+
+        <h2>Add Your Vehicle</h2>
+
+        <form action="/customer/vehicles/save"
+              method="post"
+              th:object="${vehicle}">
+
+            <label>Vehicle Number</label>
+
+            <input type="text"
+                   th:field="*{vehicleNumber}"
+                   placeholder="Example: MH-05-AB-1234"
+                   required>
+
+
+            <label>Vehicle Model</label>
+
+            <input type="text"
+                   th:field="*{vehicleModel}"
+                   placeholder="Example: Hyundai Creta"
+                   required>
+
+
+            <label>Vehicle Type</label>
+
+            <select th:field="*{vehicleType}" required>
+
+                <option value="">Select Vehicle Type</option>
+
+                <option value="Car">Car</option>
+
+                <option value="Bike">Bike</option>
+
+                <option value="Scooter">Scooter</option>
+
+                <option value="Other">Other</option>
+
+            </select>
+
+
+            <label>Purchase Year</label>
+
+            <input type="number"
+                   th:field="*{purchaseYear}"
+                   min="1900"
+                   max="2026"
+                   placeholder="Example: 2022"
+                   required>
+
+
+            <div class="buttons">
+
+                <button type="submit">
+                    Save Vehicle
+                </button>
+
+                <a href="/customer/dashboard"
+                   class="back">
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
